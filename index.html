@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <head>
-  <title>Exterminator</title>  
+  <title>Exterminator</title>    
   <script type="text/javascript" src="crafty-min.js"></script>
   <style>
     body, html { margin:0; padding: 0; overflow:hidden; font-family:Arial; 
@@ -15,10 +15,26 @@
 
       Crafty.init(800, 500);
       
-      Crafty.e("Green, 2D, DOM, Color, Fourway")
-        .color('#1C8513')
+      Crafty.e("Exterminator, 2D, DOM, Color, Fourway")
+        .color("#1C8513")
         .attr({ x: 20, y: 100, w: 10, h: 10 })
-        .fourway(5);
+        .fourway(5);       
+
+      Crafty.e("Mole, 2D, DOM, Color")
+        .color("brown")
+        .attr({ x: 100, y: 100, w: 5, h: 5 });
+
+      /* Collision Code */
+      exterminator.addComponent("Collision").bind('Moved', function(from) {
+        if(this.hit('2D')) {
+           this.attr({x: from.x, y:from.y});
+        }
+      });
+      mole.addComponent("Collision").bind('Moved', function(from) {
+        if(this.hit('2D')) {
+           this.attr({x: from.x, y:from.y});
+        }
+      });
 
     };
   </script>
